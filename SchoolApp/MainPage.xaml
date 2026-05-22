@@ -21,6 +21,11 @@
         <Button Text="Check"
                 Clicked="OnTapClicked"
                 HorizontalOptions="Center" />
+        <Label Text="SchoolApp" FontSize="32" HorizontalOptions="Center" />
+        <Button Text="Open students list"
+                Clicked="OnOpenStudentsClicked"
+                HorizontalOptions="Center" />
     </VerticalStackLayout>
+
 
 </ContentPage>
