@@ -3,15 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SchoolApp.StudentsPage"
              Title="Students">
-    <CollectionView x:Name="StudentsCollection"
-                    SelectionMode="Single"
-                    SelectionChanged="OnStudentSelected">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Label Text="{Binding .}"
-                       Padding="16"
-                       FontSize="18" />
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+
+        <Label Text="Students" FontSize="24" />
+
+        <!-- form: type a name, tap Add -->
+        <HorizontalStackLayout Spacing="10">
+            <Entry  Text="{Binding NewName}"
+                    Placeholder="New student name"
+                    WidthRequest="220" />
+            <Button Text="Add"
+                    Clicked="OnAddClicked" />
+        </HorizontalStackLayout>
+
+        <!-- the list -->
+        <CollectionView x:Name="StudentsList"
+                        ItemsSource="{Binding Students}"
+                        SelectionMode="Single"
+                        SelectionChanged="OnStudentSelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" ColumnDefinitions="*,Auto">
+                        <Label Text="{Binding Name}"
+                               Grid.Column="0" FontSize="18" />
+                        <Label Text="{Binding Gpa, StringFormat='GPA: {0:F2}'}"
+                               Grid.Column="1" FontSize="16" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
 </ContentPage>

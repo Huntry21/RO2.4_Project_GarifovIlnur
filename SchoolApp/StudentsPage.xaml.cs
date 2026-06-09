@@ -1,3 +1,6 @@
+using SchoolApp.Models;
+using SchoolApp.ViewModels;
+
 namespace SchoolApp;
 
 public partial class StudentsPage : ContentPage
@@ -9,10 +12,17 @@ public partial class StudentsPage : ContentPage
         "Zhumabay Nurdaulet", 
     };
 
+    private readonly StudentsViewModel _vm;
+
     public StudentsPage()
     {
         InitializeComponent();
-        StudentsCollection.ItemsSource = _students;
+        _vm = new StudentsViewModel();
+        BindingContext = _vm;
+    }
+    private void OnAddClicked(object sender, EventArgs e)
+    {
+        _vm.AddStudent();
     }
 
     private async void OnStudentSelected(object sender, SelectionChangedEventArgs e)
